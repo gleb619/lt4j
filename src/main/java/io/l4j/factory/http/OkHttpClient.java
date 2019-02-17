@@ -1,14 +1,22 @@
 package io.l4j.factory.http;
 
 import io.l4j.core.HttpClient;
-import lombok.Data;
+import io.l4j.core.specification.HttpClientType;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import okhttp3.*;
+import okhttp3.MediaType;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
-@Data
+@RequiredArgsConstructor
 public class OkHttpClient implements HttpClient {
 
-    private okhttp3.OkHttpClient okHttpClient = new okhttp3.OkHttpClient();
+    private final okhttp3.OkHttpClient okHttpClient;
+
+    public OkHttpClient() {
+        this.okHttpClient = null;
+    }
 
     @Override
     @SneakyThrows
@@ -21,6 +29,11 @@ public class OkHttpClient implements HttpClient {
         try (Response response = okHttpClient.newCall(request).execute()) {
             String test = response.body().string();
         }
+    }
+
+    @Override
+    public HttpClientType getType() {
+        return HttpClientType.OKHTTP;
     }
 
 }
