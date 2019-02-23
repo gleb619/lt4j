@@ -1,0 +1,86 @@
+/*
+group 'io.lt4j'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+*/
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+    }
+}
+
+apply plugin: 'java'
+
+group = 'io.lt4j'
+version = '0.0.1-SNAPSHOT'
+description = "lt4j"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+ext {
+    lombok_version = '1.16.20'
+}
+
+configurations.all {
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    mavenLocal()
+}
+
+dependencies {
+    compile project(':api')
+    compile 'com.vanillasource.jaywire:jaywire:1.1.0'
+
+    compile 'com.squareup.okhttp3:okhttp:3.4.2'
+    compile 'org.apache.httpcomponents:httpclient:4.5.7'
+    compile 'org.apache.httpcomponents:fluent-hc:4.5.7'
+    compile 'com.google.guava:guava:23.0'
+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.8'
+    compile 'com.fasterxml.jackson.module:jackson-module-afterburner:2.9.8'
+    compile 'commons-io:commons-io:2.6'
+    compile 'org.apache.commons:commons-lang3:3.7'
+
+    compileOnly "org.projectlombok:lombok:$lombok_version"
+    compile 'io.vavr:vavr:0.10.0'
+
+    compile 'com.github.pwittchen:reactivebus:0.0.5'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.10'
+
+    compile 'org.slf4j:slf4j-api:1.7.2'
+    compile 'ch.qos.logback:logback-classic:1.0.9'
+    compile 'ch.qos.logback:logback-core:1.0.9'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'com.jayway.jsonpath:json-path:2.4.0'
+    testCompile 'org.assertj:assertj-core:3.9.1'
+    testCompileOnly "org.projectlombok:lombok:1.16.20"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0'
+}
