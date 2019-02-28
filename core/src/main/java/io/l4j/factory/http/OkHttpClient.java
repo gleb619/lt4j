@@ -1,12 +1,10 @@
 package io.l4j.factory.http;
 
 import io.l4j.core.HttpClient;
+import io.l4j.core.RequestInfo;
 import io.l4j.core.specification.HttpClientType;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 @RequiredArgsConstructor
@@ -20,14 +18,12 @@ public class OkHttpClient implements HttpClient {
 
     @Override
     @SneakyThrows
-    public void post() {
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), "{ \"test\" : \"text\" }");
-        Request request = new Request.Builder()
-                .url("http://localhost:8080/api")
-                .post(body)
-                .build();
-        try (Response response = okHttpClient.newCall(request).execute()) {
-            String test = response.body().string();
+    public RequestInfo execute(RequestInfo requestInfo) {
+        try (Response response = okHttpClient.newCall(requestInfo.getRequest()).execute()) {
+            return requestInfo.withResponse(
+                    response.code(),
+                    response.headers().toMultimap(),
+                    response.body().bytes());
         }
     }
 

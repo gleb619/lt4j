@@ -67,6 +67,8 @@ dependencies {
     compileOnly "org.projectlombok:lombok:$lombok_version"
     compile 'io.vavr:vavr:0.10.0'
 
+    compile 'org.nanohttpd:nanohttpd:2.2.0'
+
     compile 'com.github.pwittchen:reactivebus:0.0.5'
     compile 'io.reactivex.rxjava2:rxjava:2.1.10'
 
@@ -79,6 +81,7 @@ dependencies {
     testCompile 'com.jayway.jsonpath:json-path:2.4.0'
     testCompile 'org.assertj:assertj-core:3.9.1'
     testCompileOnly "org.projectlombok:lombok:1.16.20"
+    testCompile 'me.alexpanov:free-port-finder:1.0'
 }
 
 task wrapper(type: Wrapper) {

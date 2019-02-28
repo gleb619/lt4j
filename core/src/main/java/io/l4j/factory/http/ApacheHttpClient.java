@@ -1,6 +1,7 @@
 package io.l4j.factory.http;
 
 import io.l4j.core.HttpClient;
+import io.l4j.core.RequestInfo;
 import io.l4j.core.specification.HttpClientType;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -20,7 +21,6 @@ public class ApacheHttpClient implements HttpClient {
         this.closeableHttpClient = null;
     }
 
-    @Override
     @SneakyThrows
     public void post() {
         HttpPost httpPost = new HttpPost("http://www.example.com");
@@ -48,6 +48,11 @@ public class ApacheHttpClient implements HttpClient {
     @Override
     public HttpClientType getType() {
         return HttpClientType.APACHE;
+    }
+
+    @Override
+    public RequestInfo execute(RequestInfo requestInfo) {
+        return null;
     }
 
 }

@@ -8,6 +8,7 @@ public enum ComponentType {
 
     CONFIGURATOR,
     CONVERTER,
+    STORAGE,
     PROCESSOR(ProcessorType.IO),
     SCHEDULER,
     HTTP,

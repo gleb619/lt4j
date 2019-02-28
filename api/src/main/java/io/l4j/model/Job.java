@@ -14,5 +14,6 @@ public class Job implements Model {
     private String body;
     private Long timeout;
     private List<Assertion> assertions;
+    private String fileLocation;
 
 }

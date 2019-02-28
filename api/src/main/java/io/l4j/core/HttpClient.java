@@ -4,7 +4,7 @@ import io.l4j.core.specification.HttpClientType;
 
 public interface HttpClient extends Component<ComponentType, HttpClientType> {
 
-    void post();
+    RequestInfo execute(RequestInfo requestInfo);
 
     @Override
     default ComponentType getComponentType() {
