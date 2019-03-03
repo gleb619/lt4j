@@ -13,6 +13,5 @@ public class Project implements Model {
     private String proxy;
     private Scope scope;
     private List<Pipeline> pipelines;
-    private List<Job> jobs;
 
 }

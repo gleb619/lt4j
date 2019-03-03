@@ -97,6 +97,11 @@ public class Context implements Closeable {
                         .sorted(Comparator.comparing(Component::priority))
                         .forEach(component -> component.onConfig(this));
                 break;
+            case START:
+                components.stream()
+                        .sorted(Comparator.comparing(Component::priority))
+                        .forEach(component -> component.onStart(this));
+                break;
             case DESTROY:
                 components.stream()
                         .sorted(Comparator.comparing(Component::priority))

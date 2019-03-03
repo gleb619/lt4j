@@ -11,6 +11,7 @@ import io.l4j.factory.configurator.FileSystemProcessor;
 import io.l4j.factory.converter.YamlConverter;
 import io.l4j.factory.http.ApacheHttpClient;
 import io.l4j.factory.http.OkHttpClient;
+import io.l4j.factory.strategy.LinearStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
@@ -40,6 +41,10 @@ public class ConfiguratorModule extends StandaloneModule implements ComponentMod
         return singleton(() -> new FileSystemProcessor());
     }
 
+    public LinearStrategy resolveLinearStrategy() {
+        return singleton(() -> new LinearStrategy());
+    }
+
     /* =============== OUTSIDE DEPENDENCIES =============== */
 
     public ObjectMapper provideYamlMapper() {
@@ -51,7 +56,7 @@ public class ConfiguratorModule extends StandaloneModule implements ComponentMod
     }
 
     public okhttp3.OkHttpClient provideOkHttpClient() {
-        return singleton(() -> new okhttp3.OkHttpClient());
+        return new okhttp3.OkHttpClient();
     }
 
     public CloseableHttpClient provideCloseableHttpClient() {

@@ -4,6 +4,7 @@ public enum Events {
 
     CREATE,
     CONFIG,
+    START,
     STOP,
     DESTROY,
 

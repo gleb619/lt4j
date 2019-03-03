@@ -3,6 +3,7 @@ package io.l4j.api;
 import io.l4j.configurator.BaseConfigurator;
 import io.l4j.configurator.ConfiguratorModule;
 import io.l4j.core.*;
+import io.l4j.factory.strategy.LinearStrategy;
 import io.l4j.settings.BaseReader;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
@@ -32,9 +33,11 @@ public class CliInterface implements ApiInterface {
         try (Context context = createContext(configFileLocation)) {
             Reader reader = new BaseReader();
 
-            context.addComponents(reader);
+            context.addComponents(reader, new LinearStrategy());
             log.info("Starting");
             context.fire(Events.CREATE);
+            context.fire(Events.CONFIG);
+            context.fire(Events.START);
 
             //TODO: Make your business logic here
 

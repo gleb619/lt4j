@@ -20,7 +20,7 @@ public class BaseReader implements Reader {
         Converter<DataFormat> converter = context.getComponent(ComponentType.CONVERTER, DataFormat.parseType(extension));
         byte[] bytes = ioProcessor.read(location);
         Project project = converter.from(bytes, Project.class);
-        System.out.println("BaseReader.onCreate#project: " + project);
+        context.getState().setProject(project);
     }
 
 }

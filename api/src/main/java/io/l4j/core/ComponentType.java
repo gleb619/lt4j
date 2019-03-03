@@ -1,5 +1,6 @@
 package io.l4j.core;
 
+import io.l4j.core.specification.HttpClientType;
 import io.l4j.core.specification.ProcessorType;
 import lombok.Getter;
 
@@ -11,8 +12,9 @@ public enum ComponentType {
     STORAGE,
     PROCESSOR(ProcessorType.IO),
     SCHEDULER,
-    HTTP,
-    READER;
+    HTTP(HttpClientType.OKHTTP),
+    READER,
+    STRATEGY;
 
     private final Type type;
 

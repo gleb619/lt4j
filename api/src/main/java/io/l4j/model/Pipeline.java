@@ -13,5 +13,6 @@ public class Pipeline implements Model {
     private Order order;
     private Scope scope;
     private String fileLocation;
+    private Strategy strategy;
 
 }

@@ -1,4 +1,8 @@
 package io.l4j.model;
 
-public class Order {
+import io.l4j.core.Model;
+import lombok.Data;
+
+@Data
+public class Order implements Model {
 }

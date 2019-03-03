@@ -15,5 +15,7 @@ public class Job implements Model {
     private Long timeout;
     private List<Assertion> assertions;
     private String fileLocation;
+    private String method;
+    private String mediaType;
 
 }

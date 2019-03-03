@@ -1,4 +1,4 @@
-package io.l4j.factory.http;
+package io.l4j.test;
 
 import fi.iki.elonen.NanoHTTPD;
 import lombok.SneakyThrows;
@@ -16,18 +16,23 @@ public class WebServer extends NanoHTTPD implements AutoCloseable {
     private final String response;
 
     @SneakyThrows
-    public WebServer(String status, String mimeType, String response) {
-        super(FreePortFinder.findFreeLocalPort());
+    public WebServer(String status, String mimeType, String response, Integer port) {
+        super(port);
         this.status = status;
         this.mimeType = mimeType;
         this.response = response;
         start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
-        log.info("Started at http://127.0.0.1:{}", getListeningPort());
+        log.info("Started at http://127.0.0.1:{}", port);
     }
 
     @SneakyThrows
     public static WebServer create(String response) {
-        return new WebServer("OK", "application/json", response);
+        return new WebServer("OK", "application/json", response, FreePortFinder.findFreeLocalPort());
+    }
+
+    @SneakyThrows
+    public static WebServer create(String response, Integer port) {
+        return new WebServer("OK", "application/json", response, port);
     }
 
     @Override
@@ -46,7 +51,7 @@ public class WebServer extends NanoHTTPD implements AutoCloseable {
                 session.getHeaders(),
                 body);
 
-        return newFixedLengthResponse(Response.Status.valueOf(status), mimeType, response);
+        return NanoHTTPD.newFixedLengthResponse(Response.Status.valueOf(status), mimeType, response);
     }
 
     @Override

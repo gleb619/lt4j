@@ -5,4 +5,5 @@ dependencies {
     compile project(':core')
 
     compile 'info.picocli:picocli:3.9.5'
+    testCompile project(':test-web-server')
 }

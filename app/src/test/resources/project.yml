@@ -1,0 +1,33 @@
+name: "Test project"
+address: "http://localhost:8080"
+pipelines:
+- name: "First pipe"
+  jobs:
+  - path: "/api/create"
+    headers:
+      Accept-Charset: "utf-8"
+      Accept-Language: "ru"
+    body: "{\"name\": \"Bob\"}"
+    method: "POST"
+    timeout: 10000
+  - path: "/api/get"
+    headers:
+      Cache-Control: "no-cache"
+      Pragma: "no-cache"
+    method: "GET"
+  - path: "/api/update"
+    headers:
+      Cache-Control: "no-cache"
+      Pragma: "no-cache"
+    body: "{\"name\": \"Bob\", \"age\":\"100\"}"
+    method: "PUT"
+  - path: "/api/remove"
+    headers:
+      Cache-Control: "no-cache"
+      Pragma: "no-cache"
+    body: "1"
+    method: "DELETE"
+  strategy:
+    type: "linear"
+    iterations: 10
+    delay: 50

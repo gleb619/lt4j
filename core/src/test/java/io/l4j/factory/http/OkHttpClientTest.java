@@ -2,6 +2,7 @@ package io.l4j.factory.http;
 
 import io.l4j.core.RequestInfo;
 import io.l4j.factory.http.model.OkHttpRequestInfo;
+import io.l4j.test.WebServer;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;

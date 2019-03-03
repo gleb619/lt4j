@@ -1,4 +1,8 @@
 package io.l4j.model;
 
-public class Assertion {
+import io.l4j.core.Model;
+import lombok.Data;
+
+@Data
+public class Assertion implements Model {
 }
